@@ -39,7 +39,7 @@ public class Drone {
     @Column(name = "battery_capacity" , columnDefinition = "VARCHAR(10)")
     @Max(100)
     @Min(0)
-    private long batteryCapacity;
+    private int batteryCapacity;
 
     @Column(name = "state" , columnDefinition = "VARCHAR(20)")
     private State state;
