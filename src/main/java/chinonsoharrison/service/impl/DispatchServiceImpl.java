@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,8 +90,8 @@ public class DispatchServiceImpl implements DispatchService {
     @Override
     public MessageResponses checkBatteryLevelForDrone(long droneId) {
         try{
-            Drone drone = retrieveDrone(droneId);
-            return new MessageResponses(MessageResponses.CODE_OK, MessageResponses.MESSAGE_COMPLETED, drone.getBatteryCapacity());
+            int batteryCapacity = checkBatteryLevel(droneId);
+            return new MessageResponses(MessageResponses.CODE_OK, MessageResponses.MESSAGE_COMPLETED, batteryCapacity);
         }catch(Exception e){
             //Return Message Object with exception
             return new MessageResponses(MessageResponses.CODE_ERROR, e.getMessage(), null);
@@ -107,5 +106,10 @@ public class DispatchServiceImpl implements DispatchService {
         }
 
         return droneOpt.get(); //Return retrieved drone into drone object
+    }
+
+    public int checkBatteryLevel(long droneId){
+        Drone drone = retrieveDrone(droneId);
+        return drone.getBatteryCapacity();
     }
 }
