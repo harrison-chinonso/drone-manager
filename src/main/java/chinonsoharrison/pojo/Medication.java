@@ -1,5 +1,6 @@
 package chinonsoharrison.pojo;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Lob;
@@ -7,6 +8,7 @@ import javax.validation.constraints.Pattern;
 
 
 @Data
+@Builder
 public class Medication {
     @Pattern(message="allowed only letters, numbers, ‘-‘, ‘_’", regexp ="[a-zA-Z0-9-_]{1,100}")
     private String name;

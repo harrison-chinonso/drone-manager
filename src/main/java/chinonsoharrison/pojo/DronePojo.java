@@ -1,17 +1,20 @@
 package chinonsoharrison.pojo;
 
+import chinonsoharrison.enums.Model;
+import chinonsoharrison.enums.State;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class DronePojo {
-
     private String serialNumber;
 
-    private String model; //(Lightweight, Middleweight, Cruiserweight, Heavyweight);
+    private Model model;
 
-    private String weightLimit;
+    private float weightLimit;
 
-    private long batteryCapacity;
+    private int batteryCapacity;
 
-    private String state;  //(IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
+    private State state;
 }

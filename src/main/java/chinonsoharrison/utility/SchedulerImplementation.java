@@ -36,5 +36,6 @@ public class SchedulerImplementation {
            int batteryLevel = dispatchService.checkBatteryLevel(drone.getId()); // Find current drone battery capacity
             audit.put(drone.getId(), batteryLevel); // Create history/audit event log
         }
+        log.info("AUDIT LOG :: {}", audit);
     }
 }

@@ -30,6 +30,7 @@ public class DispatchServiceImpl implements DispatchService {
         try{
             Drone drone = new Drone();
             BeanUtils.copyProperties(dronepojo, drone); //Create drone object from client side pojo
+            drone.setState(State.IDLE); //Set new drone state to Idea
             droneRepository.save(drone); //Register Drone
             return new MessageResponses(MessageResponses.CODE_OK, MessageResponses.MESSAGE_CREATE, drone);
         }catch(Exception e){
@@ -42,12 +43,12 @@ public class DispatchServiceImpl implements DispatchService {
     public MessageResponses loadDroneWithMedications(Medication medication, long droneId) {
         try{
             Drone drone = retrieveDrone(droneId);
-
+log.info("DRONE {}",drone);
             if(State.LOADED.equals(drone.getState())){ //Check if drone is in loaded state
                 throw new DispatchException("Drone is loaded");
             }
 
-            if(drone.getWeightLimit() > medication.getWeight()){ //Check if drone can carry medication
+            if(drone.getWeightLimit() < medication.getWeight()){ //Check if drone can carry medication
                 throw new DispatchException("Medication weight above drone weight limit");
             }
 
