@@ -14,9 +14,6 @@
     <version>1.0</version>
     <name>chinonso-harrison-musala-project</name>
     <description>REST API that allows clients to communicate with the drones</description>
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <dependencies>
         <dependency>
